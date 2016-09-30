@@ -8,4 +8,4 @@ KEY: (Yellow is expected 5 star rating -> Blue is expected 1 star rating)
 
 
 Run recommend.py to use this tool,
---help for specific documentation on what queries can be made to manipulate visualization
+--help for specific documentation on what queries can be made to manipulate visualization.
