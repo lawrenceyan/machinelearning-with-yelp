@@ -15,7 +15,7 @@ def map_and_filter(s, map_fn, filter_fn):
     >>> map_and_filter([1, 2, 3, 4, 5], square, is_odd)
     [1, 9, 25]
     """
-    return [map_fn(n) for n in s if filter_fn(n) == True]
+    return [map_fn(n) for n in s if filter_fn(n)]
 
 def key_of_min_value(d):
     """Returns the key in a dict d that corresponds to the minimum value of d,
