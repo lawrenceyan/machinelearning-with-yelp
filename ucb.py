@@ -1,4 +1,4 @@
-"""The UCB module contains functions specific to 61A projects at UC Berkeley."""
+"""Module for streamlining project visualization, interaction, and manipulation."""
 
 import code
 import functools

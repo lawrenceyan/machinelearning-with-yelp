@@ -3,7 +3,7 @@
 from math import sqrt
 from random import sample
 
-# Rename the built-in zip (http://docs.python.org/3/library/functions.html#zip)
+# Rename built-in zip function (http://docs.python.org/3/library/functions.html#zip)
 _zip = zip
 
 def map_and_filter(s, map_fn, filter_fn):
@@ -18,7 +18,8 @@ def map_and_filter(s, map_fn, filter_fn):
     return [map_fn(n) for n in s if filter_fn(n) == True]
 
 def key_of_min_value(d):
-    """Returns the key in a dict d that corresponds to the minimum value of d.
+    """Returns the key in a dict d that corresponds to the minimum value of d,
+    picking the last corresponding key if multiple keys have same minimum value.
 
     >>> letters = {'a': 6, 'b': 5, 'c': 4, 'd': 5}
     >>> min(letters)
@@ -26,10 +27,8 @@ def key_of_min_value(d):
     >>> key_of_min_value(letters)
     'c'
     """
-    minimum = min([d[i] for i in d])
-    for i in d:
-        if d[i] == minimum:
-            return i
+    return [i for i in d if d[i] == min([d[i] for i in d])][0]
+
 
 def zip(*sequences):
     """Returns a list of lists, where the i-th list contains the i-th

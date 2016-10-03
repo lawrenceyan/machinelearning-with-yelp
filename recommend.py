@@ -6,9 +6,9 @@ from ucb import main, trace, interact
 from utils import distance, mean, zip, enumerate, sample
 from visualize import draw_map
 
-##################################
-# Phase 2: Unsupervised Learning #
-##################################
+#########################
+# Unsupervised Learning #
+#########################
 
 
 def find_closest(location, centroids):
@@ -33,7 +33,6 @@ def group_by_first(pairs):
     """
     keys = []
     [keys.append(key) for key, _ in pairs if key not in keys]
-
     return [[y for x, y in pairs if x == key] for key in keys]
 
 def group_by_centroid(restaurants, centroids):
@@ -47,7 +46,7 @@ def group_by_centroid(restaurants, centroids):
 def find_centroid(cluster):
     """Return the centroid of the locations of the restaurants in cluster."""
     fn = lambda x: mean([restaurant_location(i)[x] for i in cluster])
-    return [fn(0),fn(1)]
+    return [fn(0),fn(1)] # Finds mean x and y values of location in restaraunt cluster
 
 def k_means(restaurants, k, max_updates=100):
     """Simple unsupervised machine learning algorithm that uses k-means to
@@ -66,9 +65,9 @@ def k_means(restaurants, k, max_updates=100):
     return centroids
 
 
-################################
-# Phase 3: Supervised Learning #
-################################
+#######################
+# Supervised Learning #
+#######################
 
 
 def find_predictor(user, restaurants, feature_fn):
@@ -87,7 +86,7 @@ def find_predictor(user, restaurants, feature_fn):
     xs = [feature_fn(r) for r in restaurants]
     ys = [reviews_by_user[restaurant_name(r)] for r in restaurants]
 
-    # Simplifies and avoids repeating code / used for sum of squares calculation
+    # Used for sum of squares calculation
     fn = lambda coor,exp=1: [(i-mean(coor))**exp for i in coor]
     sxx = sum(fn(xs,2))
     syy = sum(fn(ys,2))
@@ -115,7 +114,7 @@ def best_predictor(user, restaurants, feature_fns):
     return max([find_predictor(user,reviewed,i) for i in feature_fns], key = lambda x:x[1])[0]
 
 def rate_all(user, restaurants, feature_fns):
-    """Return the predicted ratings of restaurants by user using the best
+    """Return a dictionary with the predicted ratings of restaurants by user using the best
     predictor based on a function from feature_fns.
 
     Arguments:
@@ -132,7 +131,6 @@ def rate_all(user, restaurants, feature_fns):
             dic[restaurant_name(t)] = user_rating(user, restaurant_name(t))
         else:
             dic[restaurant_name(t)] = predictor(t)
-
     return dic
 
 def search(query, restaurants):
