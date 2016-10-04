@@ -2,12 +2,6 @@
 
 from utils import mean
 
-
-#############################
-# Phase 1: Data Abstraction #
-#############################
-
-
 # Reviews
 
 def make_review(restaurant_name, rating):
@@ -27,7 +21,11 @@ def review_rating(review):
 # Users
 
 def make_user(name, reviews):
-    """Return a user data abstraction."""
+    """Return a user data abstraction.
+
+    Arguments: name -- a name
+    reviews -- a list of review data abstractions
+    """
     return [name, {review_restaurant_name(r): r for r in reviews}]
 
 def user_name(user):
@@ -35,17 +33,13 @@ def user_name(user):
     return user[0]
 
 def user_reviews(user):
-    """Return a dictionary from restaurant names to reviews by the user."""
+    """Return a dictionary of restaurant names -> reviews by the user."""
     return user[1]
-
-
-### === +++ USER ABSTRACTION BARRIER +++ === ###
 
 def user_reviewed_restaurants(user, restaurants):
     """Return the subset of restaurants reviewed by user.
 
-    Arguments:
-    user -- a user
+    Arguments: user -- a user
     restaurants -- a list of restaurant data abstractions
     """
     return [r for r in restaurants if restaurant_name(r) in list(user_reviews(user))]
@@ -87,10 +81,7 @@ def restaurant_price(restaurant):
 def restaurant_ratings(restaurant):
     """Return a list of ratings, which are numbers from 1 to 5, of the
     restaurant based on the reviews of the restaurant."""
-    return [i[1] for i in restaurant['reviews']]
-
-
-### === +++ RESTAURANT ABSTRACTION BARRIER +++ === ###
+    return [review_rating(i) for i in restaurant['reviews']]
 
 def restaurant_num_ratings(restaurant):
     """Return the number of ratings for the restaurant."""
@@ -98,4 +89,4 @@ def restaurant_num_ratings(restaurant):
 
 def restaurant_mean_rating(restaurant):
     """Return the average rating for the restaurant."""
-    return sum([i[1] for i in restaurant['reviews']]) / restaurant_num_ratings(restaurant)
+    return sum([review_rating(i) for i in restaurant['reviews']]) / restaurant_num_ratings(restaurant)

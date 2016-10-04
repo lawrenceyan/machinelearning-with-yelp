@@ -58,7 +58,7 @@ def enumerate(s, start=0):
     >>> enumerate('five', 5)
     [[5, 'f'], [6, 'i'], [7, 'v'], [8, 'e']]
     """
-    return [[i+start,s[i]] for i in range(len(s))]
+    return [ [i+start,s[i]] for i in range(len(s)) ]
 
 def distance(pos1, pos2):
     """Returns the Euclidean distance between pos1 and pos2, which are pairs.

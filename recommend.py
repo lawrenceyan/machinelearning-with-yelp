@@ -32,8 +32,12 @@ def group_by_first(pairs):
     [[2, 3, 2], [2, 1], [4]]
     """
     keys = []
+
+    # Adds key to key list if key is not yet already in list
     [keys.append(key) for key, _ in pairs if key not in keys]
-    return [[y for x, y in pairs if x == key] for key in keys]
+
+    # Groups values corresponding to each key into individual lists
+    return [ [y for x, y in pairs if x == key] for key in keys ]
 
 def group_by_centroid(restaurants, centroids):
     """Return a list of clusters, where each cluster contains all restaurants
@@ -41,27 +45,34 @@ def group_by_centroid(restaurants, centroids):
     restaurants should appear once in the result, along with the other
     restaurants closest to the same centroid.
     """
+
+    # Uses group_by_first method where [key,value] -> [cluster,restaurant]
     return group_by_first([[find_closest(restaurant_location(i),centroids),i] for i in restaurants])
 
 def find_centroid(cluster):
     """Return the centroid of the locations of the restaurants in cluster."""
+
+    # Takes locations of all restaurants in cluster and finds mean
     fn = lambda x: mean([restaurant_location(i)[x] for i in cluster])
-    return [fn(0),fn(1)] # Finds mean x and y values of location in restaraunt cluster
+    return [fn(0),fn(1)] # 0 for x-coordinate / 1 for y-coordinate
 
 def k_means(restaurants, k, max_updates=100):
     """Simple unsupervised machine learning algorithm that uses k-means to
-    group restaurants by location into k clusters.
+    best estimate where centroid locations should be placed.
     """
     assert len(restaurants) >= k, 'Not enough restaurants to cluster'
     old_centroids, n = [], 0
+
     # Select initial centroids randomly by choosing k different restaurants
     centroids = [restaurant_location(r) for r in sample(restaurants, k)]
 
+    # Estimates where centroids are
     while old_centroids != centroids and n < max_updates:
         old_centroids = centroids
         clusts = group_by_centroid(restaurants,old_centroids)
         centroids = [find_centroid(i) for i in clusts]
         n += 1
+
     return centroids
 
 
@@ -75,8 +86,7 @@ def find_predictor(user, restaurants, feature_fn):
     for a user by performing least-squares linear regression using feature_fn
     on the items in restaurants. Also, return the R^2 value of this model.
 
-    Arguments:
-    user -- A user
+    Arguments: user -- A user
     restaurants -- A sequence of restaurants
     feature_fn -- A function that takes a restaurant and returns a number
     """
@@ -96,6 +106,7 @@ def find_predictor(user, restaurants, feature_fn):
     a, r_squared = mean(ys)-b*mean(xs), sxy**2 / (sxx*syy)
 
     def predictor(restaurant):
+        """Takes in restaurant input and outputs a predicted rating"""
         return b * feature_fn(restaurant) + a
 
     return predictor, r_squared
@@ -111,6 +122,7 @@ def best_predictor(user, restaurants, feature_fns):
     feature_fns -- A sequence of functions that each takes a restaurant
     """
     reviewed = user_reviewed_restaurants(user, restaurants)
+    # Iterate through feature_fns picking best predictor utilizing lambda function as key
     return max([find_predictor(user,reviewed,i) for i in feature_fns], key = lambda x:x[1])[0]
 
 def rate_all(user, restaurants, feature_fns):
