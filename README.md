@@ -28,22 +28,22 @@ Run recommend.py to use this tool, --help for specific documentation on optional
 
      optional arguments:
 
-     -h, --help show this help message and exit
+     -h, --help                      show this help message and exit
+                                     
+     -u USER, --user                 USER user file, i.e. {test_user,one_cluster,likes_everything}
+                                     
+     -k K, --k                       K for k-means
+                                       
+     -q QUERY, --query QUERY                 
+                                     search for restaurants by category e.g. 
+                                     {Vegetarian, Wine & Spirits, Chinese, Sports Bar}
+                                      
+     -p, --predict                   predict ratings for all restaurants
+                                      
+     -r, --restaurants               outputs a list of restaurant names
 
-     -u USER, --user USER user file, i.e. {test_user,one_cluster,likes_everything}
+As an example, a possible command you might make.
 
-     -k K, --k K for k-means
+     python recommend.py -u really_rich_person -k 2 -p -q Sandwiches 
 
-     -q QUERY, --query QUERY
-
-          search for restaurants by category e.g. {Beer, Wine & Spirits,Sports Bars,Convenience Stores}
-
-     -p, --predict predict ratings for all restaurants
-
-     -r, --restaurants outputs a list of restaurant names
-
-A possible command you might make:
-
-     Ex. python recommend.py -u likes_expensive -k 2 -p -q Sandwiches
-
-This would result in a visualization of predicted ratings targeted towards sandwich restaurants specifically based on a user profile of someone who likes expensive restaurants.
+This would result in a visualization of predicted ratings based on a user profile of someone who likes expensive restaurants filtering specifically for sandwich restaurants only.
