@@ -1,5 +1,5 @@
 make_user(
-    'Positive Patty',      # name
+    'Please I am so hungry Anything will do',      # name
     [                   # reviews
         # Northside restaurants
         make_review('Jasmine Thai', 4.0),
