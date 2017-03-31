@@ -1,5 +1,5 @@
 make_user(
-    'Oliver Warbucks',  # name
+    'Steve Wozniak',  # name
     [                   # reviews
         # cheap restaurants
         make_review('Jasmine Thai', 3.0),
