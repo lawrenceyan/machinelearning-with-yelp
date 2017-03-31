@@ -1,5 +1,5 @@
 make_user(
-    'Lawrence Yan',     # name
+    'The L Dawg',     # name
     [                   # reviews
         # Northside restaurants
         make_review('Jasmine Thai', 4.0),
