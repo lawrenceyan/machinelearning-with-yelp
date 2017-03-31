@@ -1,5 +1,5 @@
 make_user(
-    'Juan Cluster',     # name
+    'Fluster Cuck',     # name
     [                   # reviews
         # Southside restaurants
         make_review('Cafe 3', 2.0),
