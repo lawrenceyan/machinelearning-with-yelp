@@ -3,8 +3,7 @@
 from math import sqrt
 from random import sample
 
-# Rename built-in zip function (http://docs.python.org/3/library/functions.html#zip)
-_zip = zip
+zip_ = zip # editing the default zip function a little
 
 def map_and_filter(s, map_fn, filter_fn):
     """Returns a new list containing the results of calling map_fn on each
@@ -34,8 +33,8 @@ def zip(*sequences):
     """Returns a list of lists, where the i-th list contains the i-th
     element from each of the argument sequences.
 
-    >>> zip(range(0, 3), range(3, 6))
-    [[0, 3], [1, 4], [2, 5]]
+    >>> zip(range(0, 3), range(6,9))
+    [[0, 6], [1, 7], [2, 8]]
     >>> for a, b in zip([1, 2, 3], [4, 5, 6]):
     ...     print(a, b)
     1 4
@@ -47,7 +46,7 @@ def zip(*sequences):
     ['b', 2, 're']
     ['c', 3, 'mi']
     """
-    return list(map(list, _zip(*sequences)))
+    return list(map(list, zip_(*sequences)))
 
 def enumerate(s, start=0):
     """Returns a list of lists, where the i-th list contains i+start and
