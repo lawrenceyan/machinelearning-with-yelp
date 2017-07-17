@@ -1,4 +1,6 @@
-"""Module for streamlining project visualization, interaction, and manipulation."""
+"""Module for streamlining project visualization, interaction, and manipulation.
+Credits to John Denero for providing basic error testing / QA functions. Very helpful for bug checking! 
+"""
 
 import code
 import functools
