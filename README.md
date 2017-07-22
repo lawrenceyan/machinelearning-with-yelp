@@ -30,7 +30,7 @@ Run recommend.py to use this tool, --help for specific documentation on optional
 
      -h, --help                      show this help message and exit
                                      
-     -u USER, --user                 USER user file, i.e. {test_user,one_cluster,likes_everything}
+     -u USER, --user USER            USER user file, i.e. {test_user,one_cluster,likes_everything}
                                      
      -k K, --k                       K for k-means
                                        
