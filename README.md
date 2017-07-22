@@ -2,7 +2,7 @@
 
 Using a Voronoi diagram superimposed onto a specified map location (Ex. Downtown Berkeley), creates a simple visualization of predicted restaurant ratings in any area based on a compiled dataset of preexisting Yelp reviews nearby.
 
-Visualization created utilizing a combination of simple least-squares linear regression and k-means algorithm.
+Visualization created utilizing a combination of simple least-squares linear regression and k-means algorithm. Check out the recommend.py file for specific code implementation. 
 
 Default sample data has been queried from restaurants near and around the UC Berkeley campus where I live. Feel free to query for your own specific location using the Fusion API.
 
